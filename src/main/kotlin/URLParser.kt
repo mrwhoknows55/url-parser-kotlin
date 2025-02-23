@@ -2,14 +2,20 @@ package com.mrwhoknows.lld.url_parser
 
 class UrlParser(private val urlString: String) {
 
-    // TODO: Implement the URL parsing logic
-    fun parse(): URL = URL(
-        protocol = "https", domain = "www.google.com", path = "/search", query = mapOf("q" to "hello world")
-    )
+    fun parse(): URL = TODO("Implement the URL parsing logic")
 
     fun isValid(): Boolean = validate()
 
-    private fun validate(): Boolean {
-        return urlString.isNotBlank()
+    private fun validate(): Boolean = booleanArrayOf(
+        isUrlNotEmpty(), hasValidProtocol()
+    ).all { it }
+
+
+    private fun hasValidProtocol(): Boolean = urlString.substringBefore("://") in VALID_PROTOCOLS
+
+    private fun isUrlNotEmpty(): Boolean = urlString.isNotBlank()
+
+    companion object {
+        val VALID_PROTOCOLS = listOf("http", "https")
     }
 }
