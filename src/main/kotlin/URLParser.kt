@@ -1,9 +1,6 @@
 package com.mrwhoknows.lld.url_parser
 
-class UrlParser(urlString: String) {
-    init {
-        require(urlString.isNotEmpty()) { "URL cannot be empty" }
-    }
+class UrlParser(private val urlString: String) {
 
     // TODO: Implement the URL parsing logic
     fun parse(): URL = URL(
@@ -13,6 +10,6 @@ class UrlParser(urlString: String) {
     fun isValid(): Boolean = validate()
 
     private fun validate(): Boolean {
-        return true
+        return urlString.isNotBlank()
     }
 }
